@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica Javascript</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/modelo.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="contenedor">
+            <form class="tareasGuardar">
+                <div class="tarea">
+                    <label>
+                        <input type="text" name="tarea" placeholder="Introduce una tarea">
+                    </label>
+                </div>
+                <select id="prioridad">
+                    <option value="">Selecciona prioridad</option>
+                    <option value="Urgente">Urgente</option>
+                    <option value="Diaria">Diaria</option>
+                    <option value="Mensual">Mensual</option>
+                </select>
+                <div>
+                    <label>
+                        <input type="submit" value="Filtrar">
+                    </label>
+                </div>
+            </form>
+        </div>
+
+        <div class="contenedor">
+            <form class="tareasBuscar">
+                <select id="prioridad">
+                    <option value="">Selecciona prioridad</option>
+                    <option value="Urgente">Urgente</option>
+                    <option value="Diaria">Diaria</option>
+                    <option value="Mensual">Mensual</option>
+                </select>
+                <div class="tarea">
+                    <label>
+                        <input type="text" name="tarea" placeholder="Introduce una tarea">
+                    </label>
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="contenedor">
+            <section id="deberes">
+                <div>
+                    <h3>Estudiar Javascript</h3>
+                </div>
+                <div id="eliminar">
+                    <p>Eliminar</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/funciones.js"></script>
+
+</body>
+
+</html>

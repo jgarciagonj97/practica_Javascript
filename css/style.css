@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contenedor .tareasGuardar{
+    background-color: lightblue;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.tareasGuardar .tarea{
+        margin-right: 0.625em;
+}
+
+.tarea label input{
+    font-size: 14px;
+}
+
+.tareasGuardar #prioridad{
+    margin-right: 0.625em;
+    font-size: 14px;
+}
+
+.contenedor .tareasBuscar{
+    background-color: lightskyblue;
+    width: 70%;
+    display: flex;
+    justify-content: start;
+    margin: 0 auto;
+    padding: 1.5em;
+}
+
+.contenedor .tareasBuscar #prioridad{
+    margin-right: 2em;
+    font-size: 14px;
+}
+
+.contenedor #deberes{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+}
