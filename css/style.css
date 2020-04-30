@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body{
+    background-color:whitesmoke;
+}
+
 .contenedor{
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -13,13 +19,14 @@
     background-color: lightblue;
     width: 70%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin: 0 auto;
     padding: 2em;
 }
 
 .tareasGuardar .tarea{
-        margin-right: 0.625em;
+    margin-right: 0.625em;
 }
 
 .tarea label input{
@@ -35,6 +42,7 @@
     background-color: lightskyblue;
     width: 70%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: start;
     margin: 0 auto;
     padding: 1.5em;
@@ -45,8 +53,34 @@
     font-size: 14px;
 }
 
-.contenedor #deberes{
+.contenedor .deberes .apartado{
     width: 70%;
     margin: 0 auto;
     display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.contenedor .deberes .apartado div:first-child{
+    width: 80%;
+    height: 100px;
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    padding-left: 2em;
+    border-bottom: 3px solid black;
+    font-family: 'Manrope', sans-serif;
+}
+
+.contenedor .deberes .apartado div:last-child{
+    width: 20%;
+    height: 100px;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid black;
+    color: white;
+    cursor: pointer;
+    font-family: 'Manrope', sans-serif;
 }
