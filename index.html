@@ -16,7 +16,7 @@
             <form class="tareasGuardar">
                 <div class="tarea">
                     <label>
-                        <input type="text" name="tarea" placeholder="Introduce una tarea">
+                        <input type="text" name="tarea" placeholder="Introduce una tarea" id="nombreTarea">
                     </label>
                 </div>
                 <select id="prioridad">
@@ -30,12 +30,13 @@
                         <input type="submit" value="Guardar" id="btn">
                     </label>
                 </div>
+                <h4 style="background-color: red; color: white; width: 100%; text-align: center;" id="mensaje"></h4>
             </form>
         </div>
 
         <div class="contenedor">
             <form class="tareasBuscar">
-                <select id="prioridad">
+                <select id="prioridadBuscar">
                     <option value="">Selecciona prioridad</option>
                     <option value="Urgente">Urgente</option>
                     <option value="Diaria">Diaria</option>
