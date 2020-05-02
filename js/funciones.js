@@ -32,17 +32,15 @@ function guardarDatos(pNombre, pPrioridad) {
         titulo: pNombre,
         prioridad: pPrioridad,
     }
-
     contador++;
     listaTareas.push(registro);
-    //pintarTarea(registro);
+    pintarTarea(registro);
 }
 
 
 function pintarTarea(pObjeto) {
     let prioridad = document.querySelector('#prioridad').value;
     var color = "";
-    tareas.innerHTML = "";
 
     switch (prioridad) {
         case "Urgente":
@@ -56,47 +54,75 @@ function pintarTarea(pObjeto) {
             break;
     }
 
-    pObjeto.forEach(elementoDentro => {
-        tareas.innerHTML += (`<div class="apartado">
+    tareas.innerHTML += (`<div class="apartado">
                         <div style="background-color: ${color}">
-                            <h3>${elementoDentro.titulo}</h3>
+                            <h3>${pObjeto.titulo}</h3>
                         </div>
                         <div class="borrar">
                             <h3>Eliminar</h3>
                         </div>
-                    </div>`)
-    });
+                    </div>`);
 }
 
 
-
 //Filtrar por prioridad
-var selectPrioridad = document.querySelector('.tareasBuscar #prioridadBuscar');
+var selectPrioridad = document.querySelector('#prioridadBuscar');
+selectPrioridad.addEventListener('change', sacarPrioridad);
+var listaFiltrada = new Array();
 
-selectPrioridad.addEventListener('change', cogerPrioridad);
-
-function cogerPrioridad(event) {
+function sacarPrioridad(event) {
     event.preventDefault();
-    let prioridad = event.target.value;
+    let prioridadBuscada = event.target.value;
 
-    if (prioridad != "") {
-        pintarTarea(filtrarXprioridad(listaTareas, prioridad));
+    if (prioridadBuscada != "") {
+        tareas.innerHTML = "";
+        pintarTarea(filtrarPrioridad(listaTareas, prioridadBuscada));
     } else {
+        tareas.innerHTML = "";
         pintarTarea(listaTareas);
     }
 }
 
-function filtrarXprioridad(pLista, pPrioridad) {
-    let listaFiltrada = new Array();
+function filtrarPrioridad(pLista, pPrioridad) {
 
-    for (elemento of pLista) {
-        if (elemento.prioridad.toLowerCase() == pPrioridad.toLowerCase()) {
-            listaFiltrada.push(elemento);
-        }
-    }
+    listaFiltrada = pLista.filter(function (elemento) {
+        return elemento.prioridad == pPrioridad;
+    })
 
     return listaFiltrada;
 }
+
+
+//Borrar elementos
+
+
+
+// var selectPrioridad = document.querySelector('.tareasBuscar #prioridadBuscar');
+
+// selectPrioridad.addEventListener('change', cogerPrioridad);
+
+// function cogerPrioridad(event) {
+//     event.preventDefault();
+//     let prioridad = event.target.value;
+
+//     if (prioridad != "") {
+//         pintarTarea(filtrarXprioridad(listaTareas, prioridad));
+//     } else {
+//         pintarTarea(listaTareas);
+//     }
+// }
+
+// function filtrarXprioridad(pLista, pPrioridad) {
+//     let listaFiltrada = new Array();
+
+//     for (elemento of pLista) {
+//         if (elemento.prioridad.toLowerCase() == pPrioridad.toLowerCase()) {
+//             listaFiltrada.push(elemento);
+//         }
+//     }
+
+//     return listaFiltrada;
+// }
 
 
 // tareas.innerHTML += (`<div class="apartado">

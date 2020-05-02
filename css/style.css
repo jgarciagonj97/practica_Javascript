@@ -64,7 +64,7 @@ body{
 .contenedor .deberes .apartado div:first-child{
     width: 80%;
     height: 100px;
-    background-color: tomato;
+    /*background-color: tomato;*/
     display: flex;
     align-items: center;
     padding-left: 2em;
