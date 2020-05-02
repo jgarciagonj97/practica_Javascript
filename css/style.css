@@ -84,3 +84,15 @@ body{
     cursor: pointer;
     font-family: 'Manrope', sans-serif;
 }
+
+.urgente{
+    background-color: tomato;
+}
+
+.diaria{
+    background-color: yellow;
+}
+
+.mensual{
+    background-color: greenyellow;
+}

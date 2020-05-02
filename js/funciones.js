@@ -1,8 +1,8 @@
 var boton = $('#btn');
-var borrar = document.querySelector('.borrar');
 var tareas = document.querySelector('.deberes');
 var mensaje = document.querySelector('#mensaje');
 var contador = 0;
+
 
 boton.on('click', function (event) {
     event.preventDefault();
@@ -21,7 +21,7 @@ boton.on('click', function (event) {
     document.querySelector('#prioridad').value = "";
     console.log(listaTareas);
 
-    //borrar.addEventListener('click', borrarTareas);  --> aquí el listeener del borrado
+    //borrar.addEventListener('click', borrarTareas);  --> aquí el listener del borrado
 });
 
 
@@ -39,26 +39,11 @@ function guardarDatos(pNombre, pPrioridad) {
 
 
 function pintarTarea(pObjeto) {
-    let prioridad = document.querySelector('#prioridad').value;
-    var color = "";
-
-    switch (prioridad) {
-        case "Urgente":
-            color = "tomato";
-            break;
-        case "Diaria":
-            color = "rgb(252, 243, 78)";
-            break;
-        case "Mensual":
-            color = "rgb(0, 255, 0)";
-            break;
-    }
-
     tareas.innerHTML += (`<div class="apartado">
-                        <div style="background-color: ${color}">
+                        <div class="${pObjeto.prioridad.toLowerCase()}">
                             <h3>${pObjeto.titulo}</h3>
                         </div>
-                        <div class="borrar">
+                        <div class="borrar" data-posid="${pObjeto.idTarea}">
                             <h3>Eliminar</h3>
                         </div>
                     </div>`);
@@ -68,68 +53,43 @@ function pintarTarea(pObjeto) {
 //Filtrar por prioridad
 var selectPrioridad = document.querySelector('#prioridadBuscar');
 selectPrioridad.addEventListener('change', sacarPrioridad);
-var listaFiltrada = new Array();
 
-function sacarPrioridad(event) {
-    event.preventDefault();
+function sacarPrioridad() {
     let prioridadBuscada = event.target.value;
 
     if (prioridadBuscada != "") {
         tareas.innerHTML = "";
-        pintarTarea(filtrarPrioridad(listaTareas, prioridadBuscada));
+        pintarTareas(filtrarPrioridad(listaTareas, prioridadBuscada));
     } else {
         tareas.innerHTML = "";
-        pintarTarea(listaTareas);
+        pintarTareas(listaTareas);
     }
 }
 
 function filtrarPrioridad(pLista, pPrioridad) {
 
-    listaFiltrada = pLista.filter(function (elemento) {
+    const listaFiltrada = pLista.filter(function (elemento) {
         return elemento.prioridad == pPrioridad;
     })
 
     return listaFiltrada;
 }
 
+function pintarTareas(pLista) {
+    for (tarea of pLista) {
+        pintarTarea(tarea);
+    }
+}
+
 
 //Borrar elementos
+var borrar = document.querySelectorAll('.borrar');
 
+for (boton of borrar) {
+    boton.addEventListener('click', borrarTarea);
+}
 
-
-// var selectPrioridad = document.querySelector('.tareasBuscar #prioridadBuscar');
-
-// selectPrioridad.addEventListener('change', cogerPrioridad);
-
-// function cogerPrioridad(event) {
-//     event.preventDefault();
-//     let prioridad = event.target.value;
-
-//     if (prioridad != "") {
-//         pintarTarea(filtrarXprioridad(listaTareas, prioridad));
-//     } else {
-//         pintarTarea(listaTareas);
-//     }
-// }
-
-// function filtrarXprioridad(pLista, pPrioridad) {
-//     let listaFiltrada = new Array();
-
-//     for (elemento of pLista) {
-//         if (elemento.prioridad.toLowerCase() == pPrioridad.toLowerCase()) {
-//             listaFiltrada.push(elemento);
-//         }
-//     }
-
-//     return listaFiltrada;
-// }
-
-
-// tareas.innerHTML += (`<div class="apartado">
-//                         <div style="background-color: ${color}">
-//                             <h3>${pObjeto.titulo}</h3>
-//                         </div>
-//                         <div class="borrar">
-//                             <h3>Eliminar</h3>
-//                         </div>
-//                     </div>`)
+function borrarTarea(event) {
+    let borrarId = event.target.dataset.posid;
+    console.log(borrarId);
+}
