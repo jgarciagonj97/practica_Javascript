@@ -49,6 +49,7 @@ function pintarTarea(pObjeto) {
                     </div>`);
 }
 
+//pintarTareas(listaTareas); --> para pintar si tuviera en el array
 
 //Filtrar por prioridad
 var selectPrioridad = document.querySelector('#prioridadBuscar');
@@ -56,10 +57,11 @@ selectPrioridad.addEventListener('change', sacarPrioridad);
 
 function sacarPrioridad() {
     let prioridadBuscada = event.target.value;
+    let titulo = buscar.value;
 
     if (prioridadBuscada != "") {
         tareas.innerHTML = "";
-        pintarTareas(filtrarPrioridad(listaTareas, prioridadBuscada));
+        pintarTareas(filtrarXNombre(filtrarPrioridad(listaTareas, prioridadBuscada), titulo));
     } else {
         tareas.innerHTML = "";
         pintarTareas(listaTareas);
@@ -82,14 +84,52 @@ function pintarTareas(pLista) {
 }
 
 
+//Filtrar por palabra
+var buscar = document.querySelector('#tareaBuscar');
+
+buscar.addEventListener('keyup', buscarTarea);
+
+
+function buscarTarea(event) {
+    let titulo = event.target.value;
+    if (titulo != "") {
+        tareas.innerHTML = "";
+        pintarTareas(filtrarXNombre(listaTareas, titulo));
+    } else {
+        tareas.innerHTML = "";
+        pintarTareas(listaTareas);
+    }
+}
+
+function filtrarXNombre(pLista, pTitulo) {
+    let listaFiltrada = new Array();
+    for (elemento of pLista) {
+        if (elemento.titulo.toLowerCase().includes(pTitulo.toLowerCase())) {
+            listaFiltrada.push(elemento);
+        }
+    }
+    return listaFiltrada;
+}
+
+
 //Borrar elementos
 var borrar = document.querySelectorAll('.borrar');
 
-for (boton of borrar) {
-    boton.addEventListener('click', borrarTarea);
+// borrar.forEach(function () {
+//     console.log('Hola');
+// })
+
+function leerBotones() {
+    for (boton of borrar) {
+        borrarTarea();
+    }
 }
 
+leerBotones(borrar);
+
 function borrarTarea(event) {
-    let borrarId = event.target.dataset.posid;
-    console.log(borrarId);
+    console.log('Hola');
+    //let borrarId = event.target.dataset.posid;
+    // console.log(borrarId);
+    // apartado.innerHTML = "";
 }
