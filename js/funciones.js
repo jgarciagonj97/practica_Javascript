@@ -20,8 +20,6 @@ boton.on('click', function (event) {
     document.querySelector('#nombreTarea').value = "";
     document.querySelector('#prioridad').value = "";
     console.log(listaTareas);
-
-    //borrar.addEventListener('click', borrarTareas);  --> aquí el listener del borrado
 });
 
 
@@ -39,17 +37,20 @@ function guardarDatos(pNombre, pPrioridad) {
 
 
 function pintarTarea(pObjeto) {
-    tareas.innerHTML += (`<div class="apartado">
+    tareas.innerHTML += (`<article id=${pObjeto.idTarea}>
                         <div class="${pObjeto.prioridad.toLowerCase()}">
-                            <h3>${pObjeto.titulo}</h3>
+                            ${pObjeto.titulo}
                         </div>
                         <div class="borrar" data-posid="${pObjeto.idTarea}">
-                            <h3>Eliminar</h3>
+                            Eliminar
                         </div>
-                    </div>`);
+                    </article>`);
+
+    leerBotones('borrar');
 }
 
 //pintarTareas(listaTareas); --> para pintar si tuviera en el array
+
 
 //Filtrar por prioridad
 var selectPrioridad = document.querySelector('#prioridadBuscar');
@@ -71,7 +72,7 @@ function sacarPrioridad() {
 function filtrarPrioridad(pLista, pPrioridad) {
 
     const listaFiltrada = pLista.filter(function (elemento) {
-        return elemento.prioridad == pPrioridad;
+        return elemento.prioridad.toLowerCase() == pPrioridad.toLowerCase();
     })
 
     return listaFiltrada;
@@ -113,23 +114,23 @@ function filtrarXNombre(pLista, pTitulo) {
 
 
 //Borrar elementos
-var borrar = document.querySelectorAll('.borrar');
-
-// borrar.forEach(function () {
-//     console.log('Hola');
-// })
-
-function leerBotones() {
-    for (boton of borrar) {
-        borrarTarea();
+function leerBotones(plistaBotones) {
+    var plistaBotones = document.querySelectorAll('.borrar');
+    for (boton of plistaBotones) {
+        boton.addEventListener('click', borrarTareas);
     }
 }
 
-leerBotones(borrar);
+function borrarTareas(event) {
+    console.log(listaTareas)
+    let borrarId = event.target.dataset.posid;
+    borrado = document.getElementById(borrarId);
+    borrado.innerHTML = "";
 
-function borrarTarea(event) {
-    console.log('Hola');
-    //let borrarId = event.target.dataset.posid;
-    // console.log(borrarId);
-    // apartado.innerHTML = "";
+    //Borra del array
+    var posicion = listaTareas.findIndex(
+        (nombre) => nombre.idTarea == borrarId
+    );
+    listaTareas.splice(posicion, 1);
 }
+

@@ -53,7 +53,7 @@ body{
     font-size: 14px;
 }
 
-.contenedor .deberes .apartado{
+.contenedor .deberes article{
     width: 70%;
     margin: 0 auto;
     display: flex;
@@ -61,7 +61,7 @@ body{
     justify-content: space-between;
 }
 
-.contenedor .deberes .apartado div:first-child{
+.contenedor .deberes article div:first-child{
     width: 80%;
     height: 100px;
     /*background-color: tomato;*/
@@ -70,9 +70,11 @@ body{
     padding-left: 2em;
     border-bottom: 3px solid black;
     font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
 }
 
-.contenedor .deberes .apartado div:last-child{
+.contenedor .deberes article div:last-child{
     width: 20%;
     height: 100px;
     background-color: red;
@@ -83,6 +85,8 @@ body{
     color: white;
     cursor: pointer;
     font-family: 'Manrope', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .urgente{
