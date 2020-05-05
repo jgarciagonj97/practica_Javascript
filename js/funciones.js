@@ -125,7 +125,7 @@ function borrarTareas(event) {
     console.log(listaTareas)
     let borrarId = event.target.dataset.posid;
     borrado = document.getElementById(borrarId);
-    borrado.innerHTML = "";
+    borrado.parentNode.removeChild(borrado);
 
     //Borra del array
     var posicion = listaTareas.findIndex(
