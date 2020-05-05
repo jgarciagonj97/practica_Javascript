@@ -46,7 +46,12 @@ function pintarTarea(pObjeto) {
                         </div>
                     </article>`);
 
-    leerBotones('borrar');
+    var plistaBotones = document.querySelectorAll('.borrar');
+
+    for (boton of plistaBotones) {
+        boton.addEventListener('click', borrarTareas);
+    }
+    //leerBotones('borrar');
 }
 
 //pintarTareas(listaTareas); --> para pintar si tuviera en el array
@@ -65,7 +70,7 @@ function sacarPrioridad() {
         pintarTareas(filtrarXNombre(filtrarPrioridad(listaTareas, prioridadBuscada), titulo));
     } else {
         tareas.innerHTML = "";
-        pintarTareas(listaTareas);
+        pintarTareas(filtrarXNombre(listaTareas, titulo));
     }
 }
 
@@ -114,22 +119,24 @@ function filtrarXNombre(pLista, pTitulo) {
 
 
 //Borrar elementos
-function leerBotones(plistaBotones) {
-    var plistaBotones = document.querySelectorAll('.borrar');
-    for (boton of plistaBotones) {
-        boton.addEventListener('click', borrarTareas);
-    }
-}
+// function leerBotones(plistaBotones) {
+//     var plistaBotones = document.querySelectorAll('.borrar');
+//     for (boton of plistaBotones) {
+//         boton.addEventListener('click', borrarTareas);
+//     }
+// }
 
 function borrarTareas(event) {
     console.log(listaTareas)
-    let borrarId = event.target.dataset.posid;
-    borrado = document.getElementById(borrarId);
-    borrado.parentNode.removeChild(borrado);
+    let borrado = event.target.parentNode;
+    tareas.removeChild(borrado);
+    // let borrarId = event.target.dataset.posid;
+    // borrado = document.getElementById(borrarId);
+    // borrado.parentNode.removeChild(borrado);
 
     //Borra del array
     var posicion = listaTareas.findIndex(
-        (nombre) => nombre.idTarea == borrarId
+        (nombre) => nombre.idTarea == event.target.dataset.posid
     );
     listaTareas.splice(posicion, 1);
 }
